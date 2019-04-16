@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Players from './players/Players';
 import './App.css';
 
 class App extends Component {
+  state = {greeting: 'No greeting for you!', 
+farewell: 'No byes for you!', 
+players: [
+  {id: 1, 
+  name: 'Elan'}, 
+  {id: 2, 
+  name: 'Lloyd'}, 
+  {id: 3,
+  name: 'Lydia'},
+  {id: 4, 
+  name: 'Megan'}
+]};
+
+  greet = e => {
+    e.preventDefault();
+    this.setState({greeting: 'Hello Web Students'})
+  } 
+
+  farewell = e => {
+    e.preventDefault();
+    this.setState({
+      farewell: 'Bye Web Students'
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Hello World
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Players players={this.state.players} />
+        <p>{this.state.farewell}</p>
+        <button onClick={this.greet}>Greet!</button>
+        <p>{this.state.greeting}</p>
+      <button onClick={this.farewell}>Say Bye!</button>
+      
+      </div> 
     );
   }
+
+  
 }
 
 export default App;
